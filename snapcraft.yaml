@@ -1,0 +1,66 @@
+name: jrnl
+adopt-info: jrnl
+summary: Collect your thoughts and notes without leaving the command-line
+description: |
+  jrnl is a simple journal application for the command line.
+  
+  You can use it to easily create, search, and view journal entries. Journals are stored as human-readable plain text, and can also be encrypted using AES encryption.
+  
+license: GPL-3.0
+
+base: core20
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+  - build-on: armhf
+  - build-on: ppc64el
+
+apps:
+  jrnl:
+    command: .local/bin/jrnl
+    environment:
+      LC_ALL: C.UTF-8
+      PYTHONPATH: $SNAP/usr/lib/python3/site-packages 
+      PATH: $SNAP_COMMON/.local/bin:$PATH 
+    plugs:
+      - home
+
+parts:
+  jrnl:
+    after:
+      - poetry
+    source: https://github.com/jrnl-org/jrnl
+    source-type: git
+    plugin: nil
+    build-packages:
+      - python3
+      - pipx
+      - python3-venv
+      
+    stage-packages:
+      - python3
+      
+    override-pull: |
+    
+      snapcraftctl pull
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"   
+
+    override-build: |
+    
+      export PATH=$SNAP_PART_INSTALL/.local/bin:$PATH   
+      pipx ensurepath  
+      pipx install jrnl
+
+    
+  poetry:
+    source: https://github.com/python-poetry/poetry
+    source-type: git
+    plugin: nil
+    
+    override-build: | 
+      apt install -yy python3 curl tox
+      curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+      export PATH=$HOME/.poetry/env
