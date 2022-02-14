@@ -20,11 +20,10 @@ architectures:
 
 apps:
   jrnl:
-    command: local/bin/jrnl
+    command: bin/jrnl
     environment:
       LC_ALL: C.UTF-8
       PYTHONPATH: $SNAP/usr/lib/python3/site-packages 
-      PATH: $SNAP_COMMON/.local/bin:$PATH 
     plugs:
       - home
 
