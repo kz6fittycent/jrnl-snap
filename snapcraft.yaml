@@ -20,7 +20,7 @@ architectures:
 
 apps:
   jrnl:
-    command: bin/jrnl
+    command: usr/local/bin/jrnl
     environment:
       LC_ALL: C.UTF-8
       PYTHONPATH: $SNAP/usr/lib/python3/site-packages 
@@ -33,8 +33,10 @@ parts:
       - poetry
     source: https://github.com/jrnl-org/jrnl
     source-type: git
-    plugin: python
-   
+    plugin: make
+    make-parameters:
+      - PREFIX=/usr/local
+          
     build-packages:
       - python3
       - pipx
