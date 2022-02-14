@@ -57,3 +57,6 @@ parts:
       - curl
       - tox
       - python3
+
+    override-build: |
+      curl -sSL https://install.python-poetry.org | python3 -
