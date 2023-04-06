@@ -28,6 +28,7 @@ parts:
     plugin: python
     python-packages:
       - jrnl
+      - poetry
       
     override-pull: |      
       snapcraftctl pull
