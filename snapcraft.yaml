@@ -24,7 +24,7 @@ parts:
   jrnl:
     source: https://github.com/jrnl-org/jrnl
     source-type: git
-    source-tag: 3.3
+    source-branch: release
     plugin: python
     python-packages:
       - jrnl
