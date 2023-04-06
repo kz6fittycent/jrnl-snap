@@ -29,6 +29,9 @@ parts:
     python-packages:
       - jrnl
       - poetry
+    
+    build-packages:
+      - glibc-source
       
     override-pull: |      
       snapcraftctl pull
