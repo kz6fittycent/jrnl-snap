@@ -14,7 +14,7 @@ confinement: strict
 
 apps:
   jrnl:
-    command: jrnl
+    command: bin/jrnl
     environment:
       LC_ALL: C.UTF-8
     plugs:
