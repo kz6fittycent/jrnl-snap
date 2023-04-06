@@ -17,7 +17,6 @@ apps:
     command: jrnl
     environment:
       LC_ALL: C.UTF-8
-      PYTHONPATH: $SNAP/usr/lib/python3/site-packages 
     plugs:
       - home
 
