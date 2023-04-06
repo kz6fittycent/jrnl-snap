@@ -8,15 +8,9 @@ description: |
   
 license: GPL-3.0
 
-base: core20
+base: core22
 grade: stable
 confinement: strict
-
-architectures:
-  - build-on: amd64
-  - build-on: arm64
-  - build-on: armhf
-  - build-on: ppc64el
 
 apps:
   jrnl:
@@ -29,35 +23,12 @@ apps:
 
 parts:
   jrnl:
-    after:
-      - poetry
     source: https://github.com/jrnl-org/jrnl
     source-type: git
-    plugin: make
-    make-parameters:
-      - PREFIX=/usr/local
-          
-    build-packages:
-      - python3
-      - pipx
-      - python3-venv
-      
-    stage-packages:
-      - python3
-      
-    override-pull: |
-    
-      snapcraftctl pull
-      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"   
-    
-  poetry:
-    source: https://github.com/python-poetry/poetry
-    source-type: git
     plugin: python
-    build-packages:
-      - curl
-      - tox
-      - python3
-
-    override-build: |
-      curl -sSL https://install.python-poetry.org | python3 -
+    python-packages:
+      - jrnl
+      
+    override-pull: |      
+      snapcraftctl pull
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
