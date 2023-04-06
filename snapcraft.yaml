@@ -23,6 +23,7 @@ apps:
 parts:
   jrnl:
     source: https://github.com/jrnl-org/jrnl
+    source-branch: release
     source-type: git
     plugin: python
     python-packages:
