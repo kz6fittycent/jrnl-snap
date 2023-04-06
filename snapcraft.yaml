@@ -12,9 +12,14 @@ base: core20
 grade: stable
 confinement: strict
 
+assumes:
+  - command-chain  
+
 apps:
   jrnl:
     command: bin/jrnl
+    command-chain: 
+      - bin/homeishome-launch     
     environment:
       LC_ALL: C.UTF-8
     plugs:
@@ -36,3 +41,8 @@ parts:
     override-pull: |      
       snapcraftctl pull
       snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
+
+  homeishome-launch:
+    plugin: nil
+    stage-snaps:
+      - homeishome-launch 
