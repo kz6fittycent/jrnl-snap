@@ -26,8 +26,10 @@ apps:
       - bin/homeishome-launch     
     environment:
       LC_ALL: C.UTF-8
+      GTK_USE_PORTAL=1
     plugs:
       - home
+      - desktop
 
 parts:
   jrnl:
