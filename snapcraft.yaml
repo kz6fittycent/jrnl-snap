@@ -41,6 +41,9 @@ parts:
     
     build-packages:
       - glibc-source
+    stage-packages:
+      - vim
+      - nano
       
     override-pull: |      
       snapcraftctl pull
