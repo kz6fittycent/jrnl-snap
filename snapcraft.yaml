@@ -22,11 +22,11 @@ assumes:
 apps:
   jrnl:
     command: bin/jrnl
+    extensions: [gnome-3-38]
     command-chain: 
       - bin/homeishome-launch     
     environment:
       LC_ALL: C.UTF-8
-      GTK_USE_PORTAL=1
     plugs:
       - home
       - desktop
