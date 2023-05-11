@@ -22,7 +22,6 @@ assumes:
 apps:
   jrnl:
     command: bin/jrnl
-    extensions: [gnome-3-38]
     command-chain: 
       - bin/homeishome-launch     
     environment:
@@ -44,9 +43,7 @@ parts:
     build-packages:
       - glibc-source
     stage-packages:
-      - vim
       - nano
-      - emacs
       
     override-pull: |      
       snapcraftctl pull
